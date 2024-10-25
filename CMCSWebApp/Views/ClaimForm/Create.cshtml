@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CMCSWebApp.Models.ReviewClaims>
+
+@{
+    ViewBag.Title = "Review Claim Forms";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Review Claim Forms</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var rvClaims in Model)
+        {
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Claim for: @rvClaims.LecturerName @rvClaims.LecturerSurname</h5>
+
+                    <dl class="row">
+                        <!-- Lecturer Information -->
+                        <dt class="col-sm-3">Lecturer Name:</dt>
+                        <dd class="col-sm-9">@rvClaims.LecturerName</dd>
+
+                        <dt class="col-sm-3">Lecturer Surname:</dt>
+                        <dd class="col-sm-9">@rvClaims.LecturerSurname</dd>
+
+                        <dt class="col-sm-3">Employee No.:</dt>
+                        <dd class="col-sm-9">@rvClaims.LecturerEmployeeNo</dd>
+
+                        <dt class="col-sm-3">Contact Details:</dt>
+                        <dd class="col-sm-9">@rvClaims.ContactDetails</dd>
+
+                        <!-- Claim Details -->
+                        <dt class="col-sm-3">Programme:</dt>
+                        <dd class="col-sm-9">@rvClaims.Programme</dd>
+
+                        <dt class="col-sm-3">Module:</dt>
+                        <dd class="col-sm-9">@rvClaims.Module</dd>
+
+                        <dt class="col-sm-3">Hours Worked:</dt>
+                        <dd class="col-sm-9">@rvClaims.HoursWorked</dd>
+
+                        <dt class="col-sm-3">Hourly Rate:</dt>
+                        <dd class="col-sm-9">@rvClaims.HourlyRate</dd>
+
+                        <dt class="col-sm-3">Submission Date:</dt>
+                        <dd class="col-sm-9">@rvClaims.SubmissionDate.ToString("dd MMM yyyy")</dd>
+
+                        <dt class="col-sm-3">Supporting Documents:</dt>
+                        <dd class="col-sm-9">@rvClaims.SupportingDocs</dd>
+                    </dl>
+
+                    <!-- Buttons to confirm or edit -->
+                    <div class="d-flex justify-content-between">
+                        <a type="btn btn-success" asp-controller="ReviewClaims" asp-action="Edit" asp-route-id="@rvClaims.ClaimID" class="btn btn-secondary">Edit</a>
+
+                        <a href="@Url.Action("ConfirmClaim", "Claims", new { id = rvClaims.ClaimID })" class="btn btn-primary">Confirm</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">No claim forms available to review.</div>
+    }
+</div>

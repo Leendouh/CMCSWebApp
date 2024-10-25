@@ -1,0 +1,163 @@
+﻿@model CMCSWebApp.Models.ClaimForm
+
+@{
+    ViewData["Title"] = "Claim Page";
+}
+
+<style>
+    /* Styling for the form container */
+    .form {
+        display: flex;
+        justify-content: center; /* Center the form horizontally */
+        align-items: flex-start; /* Align to the top to prevent vertical centering */
+        padding: 20px; /* Add padding to the container */
+        margin: 20px; /* Add margin around the form container */
+    }
+
+    /* Styling for the form itself */
+    form {
+        background-color: #f8f9fa; /* Light background for the form */
+        padding: 20px; /* Padding around the form content */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        width: 1000px; /* Set width for the claim form */
+        max-width: 100%; /* Ensure responsiveness */
+        margin: 0 auto; /* Center the form */
+    }
+
+    /* Styling for the section containers */
+    .section-container {
+        display: flex; /* Enable flexbox layout for sections */
+        justify-content: space-between; /* Space between sections */
+        margin-bottom: 20px; /* Space below sections */
+    }
+
+    /* Styling for each section box */
+    .section-box {
+        flex: 1; /* Allow sections to grow equally */
+        padding: 20px;
+        margin-right: 10px; /* Space between sections */
+        border: 1px solid #ddd; /* Light border around each section */
+        border-radius: 10px; /* Rounded corners for sections */
+        height: 100%; /* Ensure full height */
+    }
+
+        /* Remove margin from the last section */
+        .section-box:last-child {
+            margin-right: 0; /* No margin for the last section */
+        }
+
+    /* Styling for the labels */
+    label {
+        width: 100%; /* Set labels to take full width */
+        margin-top: 10px;
+    }
+
+    /* Styling for the input fields */
+    .form-control {
+        width: 100%; /* Make input fields take full width */
+        height: 35px; /* Set the height of input fields */
+        margin-bottom: 15px;
+    }
+
+    /* Styling for buttons container */
+    .button-group {
+        display: flex;
+        justify-content: space-between; /* Space between buttons */
+        margin-top: 20px; /* Space above button group */
+    }
+
+    /* Styling for buttons */
+    .btn {
+        width: 48%; /* Each button takes 48% of the row width */
+        height: 40px;
+    }
+
+    .form-header {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+</style>
+<div class="form">
+    <form id="claimForm" method="post">
+        <!-- Section containers -->
+        <div class="section-container">
+            <!-- Lecturer Information Section -->
+            <div class="section-box">
+                <h4>Lecturer Information</h4>
+                <label asp-for="LecturerName"></label>
+                <input asp-for="LecturerName" class="form-control" placeholder="Enter your name" />
+                <span asp-validation-for="LecturerName" class="text-danger"></span>
+
+                <label asp-for="LecturerSurname"></label>
+                <input asp-for="LecturerSurname" class="form-control" placeholder="Enter your surname" />
+                <span asp-validation-for="LecturerSurname" class="text-danger"></span>
+
+                <label asp-for="EmployeeNumber"></label>
+                <input asp-for="EmployeeNumber" class="form-control" placeholder="Enter employee number" />
+                <span asp-validation-for="EmployeeNumber" class="text-danger"></span>
+
+                <label asp-for="ContactDetails"></label>
+                <input asp-for="ContactDetails" class="form-control" placeholder="Enter contact number" />
+                <span asp-validation-for="ContactDetails" class="text-danger"></span>
+            </div>
+
+            <!-- Claim Details Section -->
+            <div class="section-box">
+                <h4>Claim Details</h4>
+                <label asp-for="Module"></label>
+                <input asp-for="Module" class="form-control" placeholder="Enter module name" />
+                <span asp-validation-for="Module" class="text-danger"></span>
+
+                <label asp-for="Programme"></label>
+                <input asp-for="Programme" class="form-control" placeholder="Enter programme" />
+                <span asp-validation-for="Programme" class="text-danger"></span>
+
+                <label asp-for="HoursWorked"></label>
+                <input asp-for="HoursWorked" class="form-control" placeholder="Enter hours" />
+                <span asp-validation-for="HoursWorked" class="text-danger"></span>
+
+                <label asp-for="HourlyRate"></label>
+                <input asp-for="HourlyRate" class="form-control" placeholder="Enter rate" />
+                <span asp-validation-for="HourlyRate" class="text-danger"></span>
+
+                <label asp-for="SubmissionDate"></label>
+                <input asp-for="SubmissionDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="SubmissionDate" class="text-danger"></span>
+
+                <label asp-for="SupportingDocs"></label>
+                <input asp-for="SupportingDocs" type="file" class="form-control" multiple />
+                <span asp-validation-for="SupportingDocs" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Buttons with space between them -->
+        <div class="button-group">
+            <button class="btn btn-secondary" type="button" id="addModuleButton">Add Another Module</button>
+            <button class="btn btn-primary" type="button" id="submitClaimButton">Submit Claim</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    document.getElementById("addModuleButton").addEventListener("click", function() {
+        // Logic to stay on the same page and allow for adding another module
+        // This can be as simple as resetting part of the form or clearing the input fields for module-related data
+        alert("Add another module. Stay on the same page.");
+
+        // Clear the input fields related to module (optional)
+        document.querySelector('input[name="Module"]').value = "";
+        document.querySelector('input[name="Programme"]').value = "";
+        document.querySelector('input[name="HoursWorked"]').value = "";
+        document.querySelector('input[name="HourlyRate"]').value = "";
+    });
+
+    document.getElementById("submitClaimButton").addEventListener("click", function() {
+        // Logic to submit the form and redirect to another page
+        alert("Submitting claim...");
+        document.getElementById("claimForm").action = "Claims"; // Set the action to the detail page
+        document.getElementById("claimForm").submit();  // Submit the form
+    });
+</script>
+

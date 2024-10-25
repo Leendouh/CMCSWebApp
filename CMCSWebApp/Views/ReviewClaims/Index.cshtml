@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    /* Styling for the form container */
+    .form {
+        display: flex;
+        justify-content: center; /* Center the form horizontally */
+        align-items: center; /* Center the form vertically */
+        height: 100vh; /* Full viewport height */
+        position: relative; /* Allows using transform to adjust the form's position */
+    }
+
+    /* Styling for the form itself */
+    form {
+        background-color: #f8f9fa; /* Light background for the form */
+        padding: 20px; /* Padding around the form content */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        width: 400px; /* Fixed width for the form */
+        transform: translateY(-150px); /* Moves the form up by 150px */
+    }
+
+    /* Styling for the labels */
+    label {
+        width: 100px; /* Set the width of labels */
+        height: 25px; /* Set the height of labels */
+        display: inline-block; /* Ensures label width is respected */
+        margin-bottom: 10px;
+    }
+
+    /* Styling for the input fields */
+    .form-control, .option-control {
+        width: 100%; /* Make input and select fields take full width */
+        height: 35px; /* Set the height of input fields */
+        margin-bottom: 15px;
+    }
+
+    /* Styling for the buttons container */
+    .button-group {
+        display: flex;
+        justify-content: space-between; /* Space between buttons */
+    }
+
+    /* Styling for buttons */
+    .btn {
+        width: 48%; /* Each button takes 48% of the row width */
+        height: 40px;
+    }
+</style>
+
+<div class="text-center">
+    <h2>Program Co-ordinator's Dashboard</h2>
+</div>
+
+
+<div class="form">
+    <form method="post" asp-action="Detail">
+        <div class="row">
+            <div class="form-group">
+                <label for="Username">Username</label>
+                <input type="text" id="Username" name="Username" class="form-control" placeholder="Enter email address" required />
+                <small class="text-danger">* Username is required</small>
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" id="Password" name="Password" class="form-control" placeholder="Enter password" />
+                <small class="text-danger">* Password is required</small>
+            </div>
+            <br />
+            
+
+        </div>
+
+        <br />
+
+        <!-- Buttons with space between them -->
+        <div class="button-group">
+            <button class="btn btn-primary" type="submit">Login</button>
+            <button class="btn btn-secondary" type="submit">Register</button>
+        </div>
+    </form>
+</div>

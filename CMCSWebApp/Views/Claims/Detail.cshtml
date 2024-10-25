@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CMCSWebApp.Models.Claims>
+
+@{
+    ViewData["Title"] = "Claims List";
+}
+
+<h2>Claims List</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Employee No</th>
+            <th>Programme</th>
+            <th>Module</th>
+            <th>Hours Worked</th>
+            <th>Total Amount</th>
+            <th>Submission Date</th>
+            <th>Views</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var claim in Model)
+            {
+                <tr>
+                    <td>@claim.EmployeeNo</td>
+                    <td>@claim.Programme</td>
+                    <td>@claim.Module</td>
+                    <td>@claim.HoursWorked</td>
+                    <td>@claim.TotalAmount.ToString("C")</td> <!-- Formatting for currency -->
+                    <td>@claim.SubmissionDate.ToString("dd MMM yyyy")</td> <!-- Formatting for date -->
+                    <td>
+                        <a type="btn btn-success" asp-controller="Claims" asp-action="Detail" asp-route-id="@claim.ClaimsID" class="btn btn-primary my-2">View Claim</a>
+                    </td>
+                    <td>@claim.Status.ToString()</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="8" class="text-center">No claims available.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

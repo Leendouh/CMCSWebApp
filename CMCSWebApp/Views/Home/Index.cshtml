@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="jumbo text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Contract Monthly Claim System </h1>
+        <p class="lead text-muted">
+            Welcome to the Contract Monthly Claim System
+        </p>
+        <a type="btn btn-success" asp-controller="SubmittedClaims" asp-action="Index" class=" btn btn-primary my-2">Lecturer Dashboard</a>
+        <a type="btn btn-success" asp-controller="Claims" asp-action="Index" class=" btn btn-primary my-2">A.M Dashboard</a>
+        <a type="btn btn-success" asp-controller="ReviewClaims" asp-action="Index" class=" btn btn-primary my-2">P.C Dashboard</a>
+    </div>
+</section>

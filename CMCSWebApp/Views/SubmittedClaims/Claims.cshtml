@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CMCSWebApp.Models.SubmittedClaims>
+
+<h2>Submitted Claims</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Employee No</th>
+            <th>Programme</th>
+            <th>Module</th>
+            <th>Hours Worked</th>
+            <th>Total Amount</th>
+            <th>Submission Date</th>
+            <th>Status</th>
+            <th>Views</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var sbClaims in Model)
+            {
+                <tr>
+                    <td>@sbClaims.EmployeeNo</td>
+                    <td>@sbClaims.Programme</td>
+                    <td>@sbClaims.Module</td>
+                    <td>@sbClaims.Hours</td>
+                    <td>@sbClaims.Total.ToString("C")</td>
+                    <td>@sbClaims.Date.ToString("dd MMM yyyy")</td>
+                    <td>@sbClaims.Status.ToString()</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@sbClaims.ClaimID" class="btn btn-primary my-2">View Claim</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="8" class="text-center">No claims available.</td>
+            </tr>
+        }
+    </tbody>
+</table>
